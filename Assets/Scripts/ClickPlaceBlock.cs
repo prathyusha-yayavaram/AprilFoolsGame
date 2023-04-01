@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class ClickPlaceBlock : MonoBehaviour
 {
     public Tilemap ground;
-    public Tile tileToPlace;
+    public RuleTile tileToPlace;
 
     public void Update()
     {
