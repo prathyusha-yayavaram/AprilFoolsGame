@@ -15,4 +15,5 @@ MonoBehaviour:
   blockName: Destructing Block
   tileToPlace: {fileID: 11400000, guid: eae94408d6ee17a478db2641f980d416, type: 2}
   availableQuantity: 3
+  particleSystem: {fileID: 1118442239346239053, guid: 0addfa9bf0a5b644d817a4a5db87df71, type: 3}
   timeTilDestroy: 2

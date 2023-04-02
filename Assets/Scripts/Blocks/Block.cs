@@ -19,7 +19,6 @@ public class Block : ScriptableObject
     protected Tilemap _tilemap;
     public void Place(Tilemap tilemap)
     {
-        availableQuantity--;
         _tilemap = tilemap;
         Vector3 mousePosition = Mouse.current.position.ReadValue();
         pos = Camera.main.ScreenToWorldPoint(mousePosition);

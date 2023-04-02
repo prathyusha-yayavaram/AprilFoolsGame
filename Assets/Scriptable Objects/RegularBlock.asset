@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12edf3b1112a244e90518a356003597, type: 3}
   m_Name: RegularBlock
   m_EditorClassIdentifier: 
-  blockName: 
+  blockName: Regular Block
   tileToPlace: {fileID: 11400000, guid: 8cbce602bab0d1c4ea27e59258555fcc, type: 2}
-  availableQuantity: 0
+  availableQuantity: 3

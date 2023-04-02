@@ -44,5 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02e8d31d29d20b498ff8f7fad9ba703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ground: {fileID: 0}
-  tileToPlace: {fileID: 11400000, guid: 7a34d88b50f39354bb39a881d29f4d08, type: 2}
+  blocks:
+  - {fileID: 11400000, guid: 4c2111ad3bb80f0499383e824f005a3c, type: 2}
+  - {fileID: 11400000, guid: 6d86a5d19bf39e14982da856989ad3a4, type: 2}
+  selectedBlockIndex: 0
+  tilemap: {fileID: 0}

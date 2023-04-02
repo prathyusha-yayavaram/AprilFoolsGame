@@ -12,13 +12,10 @@ public class ClickPlaceBlock : MonoBehaviour
     [SerializeField]
     public List<Block> blocks;
 
+    [HideInInspector] public List<int> blockAmounts;
+
     public int selectedBlockIndex = 0;
     public Tilemap tilemap;
-    public RuleTile permanentTile;
-    [Header("Destructible Tile Settings")] 
-    public Tile destructibleTile;
-    public float timeTilDestroy = 2;
-
 
     private InputControls inputControls;
     private InputAction leftClick;
@@ -27,6 +24,8 @@ public class ClickPlaceBlock : MonoBehaviour
 
     private void Awake()
     {
+        blockAmounts = new List<int>(blocks.Count);
+        SetBlockAmounts();
         instance = this;
         inputControls = new InputControls();
     }
@@ -45,13 +44,13 @@ public class ClickPlaceBlock : MonoBehaviour
         var currBlock = blocks[selectedBlockIndex];
         if (numKeys.WasPerformedThisFrame())
         {
-            var readValue = (int)numKeys.ReadValue<float>() - 1;
-            if (readValue < blocks.Count)
+            var readValue = (int)numKeys.ReadValue<float>()-1;
+            if (readValue < blocks.Count && readValue >= 0)
             {
                 selectedBlockIndex = readValue;
             }
         }
-        if (leftClick.triggered && currBlock && currBlock.availableQuantity > 0)
+        if (leftClick.triggered && currBlock && blockAmounts[selectedBlockIndex]-- > 0)
         {
             currBlock.Place(tilemap);
         }
@@ -61,5 +60,13 @@ public class ClickPlaceBlock : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         tilemap.SetTile(tilemap.WorldToCell(pos), null);
+    }
+
+    private void SetBlockAmounts()
+    {
+        foreach (var block in blocks)
+        {
+            blockAmounts.Add(block.availableQuantity);
+        }
     }
 }

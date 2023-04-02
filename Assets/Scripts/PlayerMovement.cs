@@ -8,7 +8,7 @@ using UnityEngine.InputSystem.Interactions;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    public static PlayerMovement instance;
     private Rigidbody2D rb;
     private InputControls inputControls;
     private InputAction movement, jump;
@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         rb = GetComponent<Rigidbody2D>();
         inputControls = new InputControls();
         _animator = GetComponent<Animator>();
@@ -78,6 +79,4 @@ public class PlayerMovement : MonoBehaviour
         _spriteRenderer.flipX = moveInput.x < 0;
         transform.Translate(destination);
     }
-
-
 }
