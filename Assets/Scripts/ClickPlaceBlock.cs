@@ -8,6 +8,11 @@ using UnityEngine.InputSystem;
 
 public class ClickPlaceBlock : MonoBehaviour
 {
+    public static ClickPlaceBlock instance;
+    [SerializeField]
+    public List<Block> blocks;
+
+    public int selectedBlockIndex = 0;
     public Tilemap tilemap;
     public RuleTile permanentTile;
     [Header("Destructible Tile Settings")] 
@@ -18,9 +23,11 @@ public class ClickPlaceBlock : MonoBehaviour
     private InputControls inputControls;
     private InputAction leftClick;
     private InputAction rightClick;
+    private InputAction numKeys;
 
     private void Awake()
     {
+        instance = this;
         inputControls = new InputControls();
     }
     private void OnEnable()
@@ -29,25 +36,28 @@ public class ClickPlaceBlock : MonoBehaviour
         leftClick.Enable();
         rightClick = inputControls.Player.RightClick;
         rightClick.Enable();
+        numKeys = inputControls.Player.NumberKeys;
+        numKeys.Enable();
     }
 
     public void Update()
     {
-        if (leftClick.triggered)
+        var currBlock = blocks[selectedBlockIndex];
+        if (numKeys.WasPerformedThisFrame())
         {
-            Vector3 mousePosition = Mouse.current.position.ReadValue();
-            var pos = Camera.main.ScreenToWorldPoint(mousePosition);
-            tilemap.SetTile(tilemap.WorldToCell(pos), permanentTile);
-        } else if (rightClick.triggered)
+            var readValue = (int)numKeys.ReadValue<float>() - 1;
+            if (readValue < blocks.Count)
+            {
+                selectedBlockIndex = readValue;
+            }
+        }
+        if (leftClick.triggered && currBlock && currBlock.availableQuantity > 0)
         {
-            Vector3 mousePosition = Mouse.current.position.ReadValue();
-            var pos = Camera.main.ScreenToWorldPoint(mousePosition);
-            tilemap.SetTile(tilemap.WorldToCell(pos), destructibleTile);
-            StartCoroutine(RemoveBlock(pos, timeTilDestroy));
+            currBlock.Place(tilemap);
         }
     }
 
-    private IEnumerator RemoveBlock(Vector3 pos, float seconds)
+    public IEnumerator RemoveBlock(Vector3 pos, float seconds)
     {
         yield return new WaitForSeconds(seconds);
         tilemap.SetTile(tilemap.WorldToCell(pos), null);

@@ -520,6 +520,18 @@ PrefabInstance:
       propertyPath: destructibleTile
       value: 
       objectReference: {fileID: 11400000, guid: 97b8ac07d0c04654aa46ca645660d5de, type: 2}
+    - target: {fileID: 101208675674302477, guid: 68cbfaea07e337845afc315742fa492d, type: 3}
+      propertyPath: blocks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 101208675674302477, guid: 68cbfaea07e337845afc315742fa492d, type: 3}
+      propertyPath: blocks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4c2111ad3bb80f0499383e824f005a3c, type: 2}
+    - target: {fileID: 101208675674302477, guid: 68cbfaea07e337845afc315742fa492d, type: 3}
+      propertyPath: blocks.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d86a5d19bf39e14982da856989ad3a4, type: 2}
     - target: {fileID: 101208675674302479, guid: 68cbfaea07e337845afc315742fa492d, type: 3}
       propertyPath: m_Name
       value: BuildingManager
@@ -6533,6 +6545,14 @@ PrefabInstance:
     - target: {fileID: 6580525712737764116, guid: 7337226c588072d4bb439332be19a542, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580525712737764117, guid: 7337226c588072d4bb439332be19a542, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580525712737764117, guid: 7337226c588072d4bb439332be19a542, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1493369447
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7337226c588072d4bb439332be19a542, type: 3}
